@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+<style type="text/css">
+	.st1{display:none;}
+	.st2{display:inline;fill:#A6D3DF;}
+	.st3{fill:#209DAA;}
+	.st4{fill:#A6D3DF;}
+	.lfteye{transform: translateY(0px);animation: bouncel 1s infinite ease;}
+	.rgteye{transform: translateY(0px);animation: bouncer 1s infinite ease;}
+	.mideye{transform: translateY(0px);animation: bouncem 1s infinite ease;}
+	.lip2{fill: #A6D3DF;transform: rotateZ(0deg);transform-origin: center;animation: lip 1s infinite ease;}
+	.head{fill:none;stroke:#fff;transform-origin: center;stroke-width:20;stroke-miterlimit:10;stroke-dasharray: 200; animation: growing 1s infinite ease;}
+	.clr{fill:#ffffff;}
+	@keyframes bouncel {0% {transform: translateY(0px);r:16px}25% {transform: translateY(40px);r:10px}50% {transform: translateY(1px);r:18px}75% {transform: translateY(40px);r:8px}100% {transform: translateY(0px);r:16px}}
+	@keyframes bouncer {0% {transform: translateY(40px);r:10px}25% {transform: translateY(0px);r:18px}50% {transform: translateY(40px);r:8px}75% {transform: translateY(0px);r:16px}100% {transform: translateY(40px);r:8px}}
+	@keyframes bouncem {0%{r:12px}50%{r:14px}100%{r:12px}}
+	@keyframes growing {0% {transform: rotateZ(0deg)}100% {transform: rotateZ(720deg)}}
+
+</style>
+<circle class="head" cx="127.2" cy="127.5" r="100" />
+
+      <!-- <g>
+	<path class="st1 lip" d="M166.8,167c-21.9,21.9-57.3,21.9-79.2,0"/>
+</g> -->
+      <circle class="st2 clr lfteye" cx="93.7" cy="108.5" r="12" />
+      <circle class="st2 clr rgteye" cx="160.7" cy="107.5" r="12" />
+      <circle class="st3 mideye" cx="127.2" cy="147.5" r="12" />
+
+      <path class="st4 lip2"
+        d="M168.3,162.8L168.3,162.8c2.6,4.3,1.1,9.9-3.2,12.5c0,0-0.1,0-0.1,0.1l-6.9,4l0,0l-15.8,9.1
+	c-17.4,10-39.7,4-49.7-13.4c-1.5-2.6-2.7-5.4-3.5-8.4c11.6,11.8,29.8,14.3,44.1,6l22.7-13.1C160.2,157.1,165.7,158.5,168.3,162.8z" />
+</svg>
