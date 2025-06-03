@@ -57,11 +57,8 @@ include '../includes/db_conn.php'; // the  connection to the database
 
 
       </ul>
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-
-
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
@@ -72,7 +69,6 @@ include '../includes/db_conn.php'; // the  connection to the database
             <i class="fa fa-power-off"></i>
           </a>
         </li>
-
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -129,30 +125,6 @@ include '../includes/db_conn.php'; // the  connection to the database
                 </p>
               </a>
             </li>
-            <!-- <li class="nav-item ">
-              <a href="#" class="nav-link ">
-                <i class="nav-icon fa fa-graduation-cap"></i>
-                <p>
-                  Students
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item ">
-                  <a href="add-student.php" class="nav-link ">
-                    <i class="fa fa-user-plus nav-icon"></i>
-                    <p>Add student</p>
-                  </a>
-                </li>
-                <li class="nav-item menu-open ">
-                  <a href="manage-students.php" class="nav-link">
-                    <i class="fa fa-edit nav-icon"></i>
-                    <p>Manage students</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li> -->
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fa fa-users"></i>
@@ -270,165 +242,124 @@ include '../includes/db_conn.php'; // the  connection to the database
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row ">
-            <form action="includes/add-parent.php" method="post" enctype="multipart/form-data" id="add_record">
-              <div class="col-md-12">
-                <div class="card card-primary card-outline">
-                  <div class="row ">
-                    <div class="col-md-12" style="font-size: 13px;padding: 20px;">
-                      <p style="font-weight: bold;padding: 5px 0px 0px 5px;"> Parent info</p>
-
-                      <hr class="bg-primary">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div id="kv-avatar-errors-2" class="center-block" style="width:100%;display:none"></div>
-                          <div class="row">
-                            <div class="col-md-5">
-                              <!-- <div class="form-group">
-                                <label for="exampleInputPassword1">Photo</label>
-
-
-                                <div class="kv-avatar center-block" style="width:200px">
-                                  <input id="avatar-2" name="father_image" type="file" class="file-loading">
-                                </div>
-                              </div> -->
-                            </div> <!-- /.col-md-6 -->
-                            <div class="col-md-7">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label>father's name :</label>
-                                    <div class="input-group">
-
-                                      <input type="text" class="form-control" placeholder="Enter father's names" id="father_name" name="father_name">
-                                    </div>
-                                    <!-- /.input group -->
-                                  </div>
-                                </div><!-- /.col-md-12 -->
-                                <div class="col-md-12">
-                                  <div class="form-group">
-
-                                    <label>father's NID :</label>
-                                    <div class="input-group">
-
-                                      <input type="text" class="form-control" placeholder="Enter father's national identintity card " name="father_nid" id="father_nid">
-                                    </div>
-                                    <!-- /.input group -->
-                                  </div>
-                                </div><!-- /.col-md-12 -->
-
-                              </div><!-- /.row -->
-
-                            </div><!-- /.col-md-6 -->
-
-
-                          </div> <!--  /.row    -->
-
-                        </div><!-- /.col-md-6 -->
-
-                        <div class="col-md-6">
-                          <div id="kv-avatar-errors-1" class="center-block" style="width:100%;display:none"></div>
-                          <div class="row">
-                            <div class="col-md-5">
-
-                              <!-- <div class="form-group">
-                                <label for="exampleInputPassword1">Photo</label>
-
-
-                                <div class="kv-avatar center-block" style="width:200px">
-                                  <input id="avatar-1" name="mother_image" type="file" class="file-loading">
-                                </div>
-                              </div> -->
-                            </div> <!-- /.col-md-6 -->
-                            <div class="col-md-7">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="form-group">
-
-                                    <label>Mother's name :</label>
-                                    <div class="input-group">
-
-                                      <input type="text" class="form-control" placeholder="Enter mother's names" name="mother_name" id="mother_name">
-                                    </div>
-                                    <!-- /.input group -->
-                                  </div>
-                                </div><!-- /.col-md-12 -->
-                                <div class="col-md-12">
-                                  <div class="form-group">
-
-                                    <label>Mother's NID :</label>
-                                    <div class="input-group">
-
-                                      <input type="text" class="form-control" placeholder="Enter mother's national identity card number" name="mother_nid" id="mother_nid">
-                                    </div>
-                                    <!-- /.input group -->
-                                  </div>
-                                </div><!-- /.col-md-12 -->
-
-                              </div><!-- /.row -->
-
-                            </div><!-- /.col-md-6 -->
-
-
-                          </div> <!--  /.row    -->
-
-                        </div><!-- /.col-md-6 -->
-                      </div><!-- /.row -->
-
-                      <b> Account info</b>
-                      <hr class="bg-primary">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Email</label>
-
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                              </div>
-                              <input type="email" class="form-control" placeholder="Enter email address" name="email" id="email">
-                            </div>
-                            <!-- /.input group -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-primary card-outline">
+      <form action="includes/add-parent.php" method="post" enctype="multipart/form-data" id="add_record">
+        <div class="row">
+          <div class="col-md-12" style="font-size: 13px; padding: 20px;">
+            <p style="font-weight: bold; padding: 5px 0px 0px 5px;">Parent info</p>
+            <hr class="bg-primary">
+            <div class="row">
+              <div class="col-md-6">
+                <div id="kv-avatar-errors-2" class="center-block" style="width:100%; display:none"></div>
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-7">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Father's name :</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter father's names" id="father_name" name="father_name">
                           </div>
-                          <!-- /.form group -->
-                        </div> <!-- /.col-md-3 -->
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Phone number</label>
-
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                              </div>
-                              <input type="text" class="form-control" placeholder="Enter phone number" name="phone" id="phone">
-                            </div>
-                            <!-- /.input group -->
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Father's NID :</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter father's national identity card" name="father_nid" id="father_nid">
                           </div>
-                          <!-- /.form group -->
-                        </div> <!-- /.col-md-3 -->
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Phone number</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                              </div>
-                              <input type="text" class="form-control" placeholder="Enter phone number " name="phone2" id="phone2">
-                            </div>
-                            <!-- /.input group -->
+              <div class="col-md-6">
+                <div id="kv-avatar-errors-1" class="center-block" style="width:100%; display:none"></div>
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-7">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Mother's name :</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter mother's names" name="mother_name" id="mother_name">
                           </div>
-                          <!-- /.form group -->
-                        </div> <!-- /.col-md-3 -->
-                        <div id="messages"></div>
-                      </div><!--  /.row -->
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Mother's NID :</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter mother's national identity card number" name="mother_nid" id="mother_nid">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- /.row -->
 
-                      <button type="submit" class="btn btn-primary" style="float: right;margin-right: 20px;"><i class="fas  fa-save  "></i> Save</button>
+            <b>Account info</b>
+            <hr class="bg-primary">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Email</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Enter email address" name="email" id="email">
+                  </div>
+                </div>
+              </div>
 
-                    </div><!-- /.col-md-12 -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Phone number</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter phone number" name="phone" id="phone">
+                  </div>
+                </div>
+              </div>
 
-            </form>
-          </div> <!-- /.row -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Phone number</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter phone number" name="phone2" id="phone2">
+                  </div>
+                </div>
+              </div>
+
+              <div id="messages"></div>
+            </div> <!-- /.row -->
+
+            <button type="submit" class="btn btn-primary" style="float: right; margin-right: 20px;">
+              <i class="fas fa-save"></i> Save
+            </button>
+
+          </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+      </form>
+    </div> <!-- /.card -->
+  </div> <!-- /.col-md-12 -->
+</div> <!-- /.row -->
+
+  
         </div><!-- /.card -->
     </div><!-- /.col-md-12 -->
   </div>
@@ -510,11 +441,6 @@ include '../includes/db_conn.php'; // the  connection to the database
       removeTitle: 'Cancel or reset changes',
       elErrorContainer: '#kv-avatar-errors-2',
       msgErrorClass: 'alert  alert-danger',
-      // defaultPreviewContent: '<img src="../images/parents/father.png" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
-      // layoutTemplates: {
-      //   main2: '{preview} ' + btnCust + ' {remove} {browse}'
-      // },
-      // allowedFileExtensions: ["jpg", "png", "gif"]
     });
     $("#avatar-1").fileinput({
       overwriteInitial: true,
@@ -528,11 +454,7 @@ include '../includes/db_conn.php'; // the  connection to the database
       removeTitle: 'Cancel or reset changes',
       elErrorContainer: '#kv-avatar-errors-1',
       msgErrorClass: 'alert  alert-danger',
-      // defaultPreviewContent: '<img src="../images/parents/mother.png" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
-      // layoutTemplates: {
-      //   main2: '{preview} ' + btnCust + ' {remove} {browse}'
-      // },
-      // allowedFileExtensions: ["jpg", "png", "gif"]
+    
     });
 
     $(document).ready(function() {
