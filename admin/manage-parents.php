@@ -259,9 +259,9 @@ include '../includes/db_conn.php'; // the  connection to the database
                     <table id="example1" class="table table-bordered table-sm " style="font-size: 13px;">
                       <thead>
                         <tr>
-                          <th>Profile </th>
+                          <!-- <th>Profile </th> -->
                           <th>Father's name </th>
-                          <th>Profile </th>
+                          <!-- <th>Profile </th> -->
                           <th>Mother's name</th>
                           <th>Phone N<sup><u>o</u></sup></th>
                           <th>Email</th>
@@ -288,17 +288,17 @@ include '../includes/db_conn.php'; // the  connection to the database
                           $guardian_num = $exe_parent->num_rows;
                         ?>
                           <tr>
-                            <td><img src="../images/parents/<?php if ($row['fathers_img'] == '') {
+                            <!-- <td><img src="../images/parents/<?php if ($row['fathers_img'] == '') {
                                                               echo "father.png";
                                                             } else {
                                                               echo $row['fathers_img'];
-                                                            } ?>" class="img-circle img " height="50" width="50"></td>
+                                                            } ?>" class="img-circle img " height="50" width="50"></td> -->
                             <td><?php echo $row['fathers_names']; ?></td>
-                            <td><img src="../images/parents/<?php if ($row['mothers_img'] == '') {
+                            <!-- <td><img src="../images/parents/<?php if ($row['mothers_img'] == '') {
                                                               echo "mother.png";
                                                             } else {
                                                               echo $row['mothers_img'];
-                                                            } ?>" class="img-circle img " height="50" width="50"></td>
+                                                            } ?>" class="img-circle img " height="50" width="50"></td> -->
                             <td><?php echo $row['mothers_names']; ?></td>
                             <td><?php echo $row['phone_number1'] . "/" . $row['phone_number2']; ?></td>
                             <td><?php echo $row['email']; ?></td>
