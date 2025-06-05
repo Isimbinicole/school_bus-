@@ -1,116 +1,68 @@
 <?php
 // database connection
 include '../../includes/db_conn.php';
-$driver_ID = $_GET['id'];
-$valid = array('success' => false, 'messages' => array());
+
+$valid = array('success' => false, 'messages' => '');
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    $valid['messages'] = "Invalid or missing driver ID in URL";
+    echo json_encode($valid);
+    exit;
+}
+
+$driver_ID = intval($_GET['id']);
+
 $driver_name = mysqli_escape_string($conn, $_POST['driver_name']);
 $driver_nid = mysqli_escape_string($conn, $_POST['driver_nid']);
 $plate_number = mysqli_escape_string($conn, $_POST['plate_number']);
 $email = mysqli_escape_string($conn, $_POST['email']);
 $phone = mysqli_escape_string($conn, $_POST['phone']);
 $phone2 = mysqli_escape_string($conn, $_POST['phone2']);
-$type = explode('.', $_FILES['driver_image']['name']);
-$type = $type[count($type) - 1];
-$img1 = uniqid(rand()) . '.' . $type;
-$url = '../../images/driver/' . $img1;
 
-
-if ($type == '') {
-    $valid['success'] = false;
-    $valid['messages'] = "Please choose  an image ! ";
+// === Validation ===
+if (empty($driver_name)) {
+    $valid['messages'] = "Please enter driver's name";
+} elseif (empty($driver_nid)) {
+    $valid['messages'] = "Please enter driver's NID";
+} elseif (empty($email)) {
+    $valid['messages'] = "Please enter email";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $valid['messages'] = "Invalid email address";
+} elseif (preg_match("/[a-zA-Z\s]/", $phone) || strlen($phone) != 10 || !in_array(substr($phone, 0, 3), ['078', '072', '073', '079'])) {
+    $valid['messages'] = "Invalid phone number 1";
+} elseif (preg_match("/[a-zA-Z\s]/", $phone2) || strlen($phone2) != 10 || !in_array(substr($phone2, 0, 3), ['078', '072', '073', '079'])) {
+    $valid['messages'] = "Invalid phone number 2";
+} elseif ($plate_number === '-- choose bus --') {
+    $valid['messages'] = "Please choose a plate number";
 } else {
+    // Fetch bus_ID using plate number
+    $sql = "SELECT bus_ID FROM bus WHERE plate_number='$plate_number'";
+    $result = $conn->query($sql);
 
-    if ($driver_name == '') {
-        $valid['success'] = false;
-        $valid['messages'] = "Please enter driver's name  ";
-    } else {
+    if ($result && $result->num_rows > 0) {
+        $bus = $result->fetch_assoc();
+        $bus_ID = $bus['bus_ID'];
 
-        if ($driver_nid == '') {
-            $valid['success'] = false;
-            $valid['messages'] = "Please enter father's NID  ";
+        // Update driver details
+        $update_sql = "UPDATE drivers SET 
+            driver_names = '$driver_name',
+            driver_NID = '$driver_nid',
+            email = '$email',
+            phone_number1 = '$phone',
+            phone_number2 = '$phone2',
+            bus_ID = '$bus_ID'
+            WHERE driver_ID = '$driver_ID'";
+
+        if ($conn->query($update_sql) === TRUE) {
+            $valid['success'] = true;
+            $valid['messages'] = "Driver profile successfully updated.";
         } else {
-
-            if ($email == '') {
-                $valid['success'] = false;
-                $valid['messages'] = "Please enter email  ";
-            } else {
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $valid['success'] = false;
-                    $valid['messages'] = "Invalid email address ";
-                } else {
-                    if (preg_match("/^[a-zA-Z ]*$/", $phone)) {
-                        $valid['success'] = false;
-                        $valid['messages'] = "Phone number must not contain charachers and white spaces ";
-                    } else {
-                        $pn = substr($phone, 0, 3);
-                        if (!($pn == '078' || $pn == '072' || $pn == '073' || $pn == '079')) {
-                            $valid['success'] = false;
-                            $valid['messages'] = "Invalid first phone number , a valid phone number must start with [078,073 or 072 ] and must be 10 in total ";
-                        } else {
-                            if (strlen($phone) > 10 || strlen($phone) < 10) {
-                                $valid['success'] = false;
-                                $valid['messages'] = "Invalid  phone number , must be ten numbers  ";
-                            } else {
-                                if (preg_match("/^[a-zA-Z ]*$/", $phone2)) {
-                                    $valid['success'] = false;
-                                    $valid['messages'] = "Phone number must not contain charachers and white spaces ";
-                                } else {
-                                    $pn = substr($phone2, 0, 3);
-                                    if (!($pn == '078' || $pn == '072' || $pn == '073' || $pn == '079')) {
-                                        $valid['success'] = false;
-                                        $valid['messages'] = "Invalid first phone number , a valid phone number must start with [078,073 or 072 ] and must be 10 in total ";
-                                    } else {
-                                        if (strlen($phone2) > 10 || strlen($phone2) < 10) {
-                                            $valid['success'] = false;
-                                            $valid['messages'] = "Invalid  phone number , must be ten numbers  ";
-                                        } else {
-
-                                            if ($plate_number == '-- choose bus --') {
-                                                $valid['success'] = false;
-                                                $valid['messages'] = "Please choose plate number ";
-                                            } else {
-
-
-                                                if (in_array($type, array('gif', 'jpg', 'jpeg', 'png'))) {
-
-                                                    if (is_uploaded_file($_FILES['driver_image']['tmp_name'])) {
-                                                        if (move_uploaded_file($_FILES['driver_image']['tmp_name'], $url)) {
-
-                                                            // insert into database                              
-
-                                                            $sql = "SELECT * FROM bus WHERE plate_number='$plate_number'";
-                                                            $exe = $conn->query($sql);
-                                                            while ($row = $exe->fetch_array()) {
-                                                                $bus_ID = $row['bus_ID'];
-                                                            }
-                                                            $time = time();
-
-                                                            $sql = "UPDATE `drivers` SET `driver_names`='$driver_name',`driver_NID`='$driver_nid',`driver_image`='$img1',`email`='$img1',`phone_number1`='$phone',`phone_number2`='$phone2',`bus_ID`='$bus_ID' WHERE driver_ID='$driver_ID'";
-
-                                                            if ($conn->query($sql) === TRUE) {
-                                                                $valid['success'] = true;
-                                                                $valid['messages'] = "Driver profile  sucessfully updated  ";
-                                                            } else {
-                                                                $valid['success'] = false;
-                                                                $valid['messages'] = "Error while recording the data ";
-                                                            }
-                                                        } else {
-                                                            $valid['success'] = false;
-                                                            $valid['messages'] = "Error while uploading";
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            $valid['messages'] = "Error while updating data: " . $conn->error;
         }
+    } else {
+        $valid['messages'] = "Bus not found with provided plate number.";
     }
 }
+
 echo json_encode($valid);
-	// upload the file 
+?>
