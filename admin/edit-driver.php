@@ -284,190 +284,103 @@ include '../includes/db_conn.php'; // the  connection to the database
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
+             <?php
+        // include '../../includes/db_conn.php';
 
-                    <div class="row ">
-                        <?php
-                        $sql = "SELECT * FROM `drivers` as d inner join bus as b on d.bus_ID=b.bus_ID WHERE driver_ID='" . $_GET['id'] . "'";
-                        $exe = $conn->query($sql);
-                        while ($row = $exe->fetch_array()) {
-                            $driver_names = $row['driver_names'];
-                            $driver_NID = $row['driver_NID'];
-                            $driver_image = $row['driver_image'];
-                            $email = $row['email'];
-                            $phone_number1 = $row['phone_number1'];
-                            $phone_number2 = $row['phone_number2'];
-                            $plate_number = $row['plate_number'];
-                        }
-                        ?>
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("Invalid or missing driver ID.");
+}
 
+$driver_id = intval($_GET['id']);
 
-                        <form action="includes/edit-driver.php?id=<php echo $_GET['id'] ?>" method="post" enctype="multipart/form-data" id="add_record">
-                            <div class="col-md-12">
-                                <div class="card card-primary card-outline">
-                                    <div class="row ">
-                                        <div class="col-md-12" style="font-size: 13px;padding: 20px;">
-                                            <p style="font-weight: bold;padding: 5px 0px 0px 5px;"> Driver edit form</p>
+// Fetch driver and assigned bus info
+$sql = "SELECT * FROM drivers d 
+        INNER JOIN bus b ON d.bus_ID = b.bus_ID 
+        WHERE driver_ID = $driver_id";
+$exe = $conn->query($sql);
 
-                                            <hr class="bg-primary">
-                                            <div class="row">
-                                                <div class="col-md-7">
-                                                    <div id="kv-avatar-errors-2" class="center-block" style="width:100%;display:none"></div>
-                                                    <div class="row">
-                                                        <div class="col-md-5">
+if ($exe->num_rows === 0) {
+    die("Driver not found.");
+}
 
+$row = $exe->fetch_assoc();
+$driver_names = $row['driver_names'];
+$driver_NID = $row['driver_NID'];
+$email = $row['email'];
+$phone_number1 = $row['phone_number1'];
+$phone_number2 = $row['phone_number2'];
+$plate_number = $row['plate_number'];
+?>     
+  <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <form action="includes/edit-driver.php?id=<?= $driver_id ?>" method="POST" enctype="multipart/form-data" id="add_record">
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="row">
+                            <div class="col-md-12" style="font-size: 13px; padding: 20px;">
+                                <p style="font-weight: bold;">Driver Edit Form</p>
+                                <hr class="bg-primary">
 
-                                                            <div class="form-group">
-                                                                <label for="exampleInputPassword1">Photo</label>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label>Driver's Name:</label>
+                                            <input type="text" class="form-control" name="driver_name" value="<?= $driver_names ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Driver's NID:</label>
+                                            <input type="text" class="form-control" name="driver_nid" value="<?= $driver_NID ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>School Bus:</label>
+                                            <select class="form-control" name="plate_number">
+                                                <option selected><?= $plate_number ?></option>
+                                                <option disabled>-- choose another bus --</option>
+                                                <?php
+                                                $bus_sql = $conn->query("SELECT plate_number FROM bus WHERE plate_number != '$plate_number'");
+                                                while ($bus = $bus_sql->fetch_assoc()) {
+                                                    echo "<option>{$bus['plate_number']}</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Email:</label>
+                                            <input type="email" class="form-control" name="email" value="<?= $email ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone Number 1:</label>
+                                            <input type="text" class="form-control" name="phone" value="<?= $phone_number1 ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone Number 2:</label>
+                                            <input type="text" class="form-control" name="phone2" value="<?= $phone_number2 ?>">
+                                        </div>
+                                    </div>
+                                </div>
 
-                                                                <div class="kv-avatar center-block" style="width:200px">
-                                                                    <input id="avatar-2" name="driver_image" type="file" class="file-loading">
-                                                                </div>
-                                                            </div>
-                                                        </div> <!-- /.col-md-6 -->
-                                                        <div class="col-md-7">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right" style="margin-right: 20px;">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
 
-                                                                        <label>driver's name :</label>
-                                                                        <div class="input-group">
-
-                                                                            <input type="text" class="form-control" placeholder="Enter drivers's names" id="driver_name" name="driver_name" value="<?php echo $driver_names; ?>">
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                </div><!-- /.col-md-12 -->
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-
-                                                                        <label>driver's NID :</label>
-                                                                        <div class="input-group">
-
-                                                                            <input type="text" class="form-control" placeholder="Enter driver's national identintity card " name="driver_nid" id="driver_nid" value="<?php echo $driver_NID; ?>">
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                </div><!-- /.col-md-12 -->
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>School bus</label>
-
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text"><i class="fas fa-bus"></i></span>
-                                                                            </div>
-                                                                            <select class="form-control" name="plate_number" id="plate_number">
-                                                                                <option><?php echo $plate_number; ?></option>
-                                                                                <option>-- choose bus --</option>
-                                                                                <?php
-                                                                                $sql = $conn->query("SELECT * FROM bus");
-                                                                                while ($row = $sql->fetch_array()) {
-                                                                                ?>
-                                                                                    <option><?php echo $row['plate_number']; ?></option>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                            </select>
-
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                    <!-- /.form group -->
-                                                                </div><!-- /.col-md-12 -->
-
-                                                            </div><!-- /.row -->
-
-                                                        </div><!-- /.col-md-6 -->
-
-
-                                                    </div> <!--  /.row    -->
-
-                                                </div><!-- /.col-md-6 -->
-
-                                                <div class="col-md-5">
-
-                                                    <div class="row">
-
-                                                        <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Email</label>
-
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                                            </div>
-                                                                            <input type="email" class="form-control" placeholder="Enter email address" name="email" id="email" value="<?php echo $email; ?>">
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                    <!-- /.form group -->
-                                                                </div><!-- /.col-md-12 -->
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Phone number</label>
-
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control" placeholder="Enter phone number" name="phone" id="phone" value="<?php echo $phone_number1; ?>">
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                    <!-- /.form group -->
-                                                                </div><!-- /.col-md-12 -->
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Phone number</label>
-
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control" placeholder="Enter phone number" name="phone2" id="phone2" value="<?php echo $phone_number2 ?>">
-                                                                        </div>
-                                                                        <!-- /.input group -->
-                                                                    </div>
-                                                                    <!-- /.form group -->
-                                                                </div><!-- /.col-md-12 -->
-
-                                                            </div><!-- /.row -->
-
-                                                        </div><!-- /.col-md-6 -->
-
-
-                                                    </div> <!--  /.row    -->
-
-                                                </div><!-- /.col-md-6 -->
-                                            </div><!-- /.row -->
-
-
-
-                                            <button type="submit" class="btn btn-primary" style="float: right;margin-right: 20px;"><i class="fas  fa-save  "></i> Save</button>
-
-                                        </div><!-- /.col-md-12 -->
-
-                        </form>
-                    </div> <!-- /.row -->
-                </div><!-- /.card -->
-        </div><!-- /.col-md-12 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <!-- /.row -->
-    <!-- Main row -->
+</section>
 
-    <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-    </section>
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2021-2022 <a href="#">Enlighten tech</a>.</strong>
+        <strong>Copyright &copy; 2024-2025 <a href="#">Enlighten tech</a>.</strong>
         All rights reserved.
 
     </footer>
