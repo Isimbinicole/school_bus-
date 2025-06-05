@@ -4,7 +4,6 @@ include '../../includes/db_conn.php';
 
 $parent_ID = mysqli_escape_string($conn, $_GET['id']);
 $valid = array('success' => false, 'messages' => array());
-
 $father_name = mysqli_escape_string($conn, $_POST['father_name']);
 $father_nid = mysqli_escape_string($conn, $_POST['father_nid']);
 $mother_name = mysqli_escape_string($conn, $_POST['mother_name']);
