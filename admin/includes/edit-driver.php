@@ -1,68 +1,43 @@
 <?php
-// database connection
 include '../../includes/db_conn.php';
 
-$valid = array('success' => false, 'messages' => '');
-
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    $valid['messages'] = "Invalid or missing driver ID in URL";
-    echo json_encode($valid);
-    exit;
+    die("Invalid or missing driver ID.");
 }
 
-$driver_ID = intval($_GET['id']);
+$driver_id = intval($_GET['id']);
 
-$driver_name = mysqli_escape_string($conn, $_POST['driver_name']);
-$driver_nid = mysqli_escape_string($conn, $_POST['driver_nid']);
-$plate_number = mysqli_escape_string($conn, $_POST['plate_number']);
-$email = mysqli_escape_string($conn, $_POST['email']);
-$phone = mysqli_escape_string($conn, $_POST['phone']);
-$phone2 = mysqli_escape_string($conn, $_POST['phone2']);
+// Sanitize and get form data
+$driver_name = $conn->real_escape_string($_POST['driver_name']);
+$driver_nid = $conn->real_escape_string($_POST['driver_nid']);
+$email = $conn->real_escape_string($_POST['email']);
+$phone1 = $conn->real_escape_string($_POST['phone']);
+$phone2 = $conn->real_escape_string($_POST['phone2']);
+$plate_number = $conn->real_escape_string($_POST['plate_number']);
 
-// === Validation ===
-if (empty($driver_name)) {
-    $valid['messages'] = "Please enter driver's name";
-} elseif (empty($driver_nid)) {
-    $valid['messages'] = "Please enter driver's NID";
-} elseif (empty($email)) {
-    $valid['messages'] = "Please enter email";
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $valid['messages'] = "Invalid email address";
-} elseif (preg_match("/[a-zA-Z\s]/", $phone) || strlen($phone) != 10 || !in_array(substr($phone, 0, 3), ['078', '072', '073', '079'])) {
-    $valid['messages'] = "Invalid phone number 1";
-} elseif (preg_match("/[a-zA-Z\s]/", $phone2) || strlen($phone2) != 10 || !in_array(substr($phone2, 0, 3), ['078', '072', '073', '079'])) {
-    $valid['messages'] = "Invalid phone number 2";
-} elseif ($plate_number === '-- choose bus --') {
-    $valid['messages'] = "Please choose a plate number";
+// Get the corresponding bus_ID from the plate number
+$bus_query = $conn->query("SELECT bus_ID FROM bus WHERE plate_number = '$plate_number'");
+if ($bus_query->num_rows === 0) {
+    die("Selected bus not found.");
+}
+$bus_row = $bus_query->fetch_assoc();
+$bus_ID = $bus_row['bus_ID'];
+
+// Update driver info
+$update_sql = "UPDATE drivers SET 
+    driver_names = '$driver_name',
+    driver_NID = '$driver_nid',
+    email = '$email',
+    phone_number1 = '$phone1',
+    phone_number2 = '$phone2',
+    bus_ID = '$bus_ID'
+    WHERE driver_ID = $driver_id";
+
+if ($conn->query($update_sql)) {
+    echo "<script>alert('Driver updated successfully.'); window.location.href = '../drivers.php';</script>";
 } else {
-    // Fetch bus_ID using plate number
-    $sql = "SELECT bus_ID FROM bus WHERE plate_number='$plate_number'";
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        $bus = $result->fetch_assoc();
-        $bus_ID = $bus['bus_ID'];
-
-        // Update driver details
-        $update_sql = "UPDATE drivers SET 
-            driver_names = '$driver_name',
-            driver_NID = '$driver_nid',
-            email = '$email',
-            phone_number1 = '$phone',
-            phone_number2 = '$phone2',
-            bus_ID = '$bus_ID'
-            WHERE driver_ID = '$driver_ID'";
-
-        if ($conn->query($update_sql) === TRUE) {
-            $valid['success'] = true;
-            $valid['messages'] = "Driver profile successfully updated.";
-        } else {
-            $valid['messages'] = "Error while updating data: " . $conn->error;
-        }
-    } else {
-        $valid['messages'] = "Bus not found with provided plate number.";
-    }
+    echo "Error updating driver: " . $conn->error;
 }
 
-echo json_encode($valid);
+$conn->close();
 ?>

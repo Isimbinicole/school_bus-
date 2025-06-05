@@ -53,13 +53,13 @@ if ($father_name == '') {
                 `phone_number2`='$phone2'
             WHERE parent_ID='$parent_ID'";
 
-    if ($conn->query($sql) === TRUE) {
-        $valid['success'] = true;
-        $valid['messages'] = "Parent profile successfully updated";
-    } else {
-        $valid['success'] = false;
-        $valid['messages'] = "Error while recording the data";
-    }
+if ($conn->query($sql) === TRUE) {
+    header("Location: ../../admin/manage-parents.php");
+    exit();
+} else {
+    echo "<script>alert('Error while recording the data'); window.history.back();</script>";
+}
+
 }
 
 echo json_encode($valid);
