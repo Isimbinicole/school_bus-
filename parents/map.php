@@ -137,12 +137,6 @@ $centerlong = $longitude;
                 fetchLastData();
 
             }, 3000);
-
-
-
-
-
-
         }
 
 

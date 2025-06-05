@@ -48,7 +48,7 @@ else{
 
 						if(is_uploaded_file($_FILES['student_image']['tmp_name'])) {
 							if(move_uploaded_file($_FILES['student_image']['tmp_name'], $url)) {
-								 $parent_ID=urldecode(base64_decode($_GET['p'])/2021);
+								 $parent_ID=urldecode(base64_decode($_GET['p'])/2024);
 								 $bod=strtotime($bod);
  
 				// insert into database                              

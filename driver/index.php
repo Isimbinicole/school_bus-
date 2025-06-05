@@ -536,7 +536,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 									<table id="example1" class="table table-bordered table-sm " style="font-size: 13px;">
 										<thead>
 											<tr>
-												<th>Profile </th>
+												<!-- <th>Profile </th> -->
 												<th>Student </th>
 
 												<th>Guardian Tel</th>
@@ -558,7 +558,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 											?>
 												<tr>
 
-													<td>
+													<!-- <td>
 														<?php
 														$data_ID = $row['data_ID'];
 														$student_ID = $row['student_ID'];
@@ -573,7 +573,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 														<img src="../images/students/<?php echo $student_image; ?>" style="width: 50px; height: 50px;border-radius: 50%;">
 
 
-													</td>
+													</td> -->
 													<td><?php echo $student_names; ?></td>
 
 
@@ -656,7 +656,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
-			<strong>Copyright &copy; 2022 </strong>
+			<strong>Copyright &copy; 2025 </strong>
 			All rights reserved.
 
 		</footer>

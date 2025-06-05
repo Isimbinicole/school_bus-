@@ -434,7 +434,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2022 .</strong>
+      <strong>Copyright &copy; 2025 .</strong>
       All rights reserved.
 
     </footer>

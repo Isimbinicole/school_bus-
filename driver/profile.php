@@ -192,7 +192,7 @@ include '../includes/db_conn.php'; // the  connection to the database
               $exe = $conn->query($sql);
               while ($row = $exe->fetch_array()) {
                 $driver_names = $row['driver_names'];
-                $driver_image = $row['driver_image'];
+                // $driver_image = $row['driver_image'];
                 $email = $row['email'];
                 $phone = $row['phone_number1'];
                 $phone2 = $row['phone_number2'];

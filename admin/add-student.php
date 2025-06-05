@@ -461,7 +461,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                             <td><?php echo $students_num; ?></td>
                             <td>
 
-                              <a href="add-student.php?p=<?php echo urlencode(base64_encode($row['parent_ID'] * 2021)); ?>" class="btn btn-sm btn-primary "><i class=" fas fa-user-plus"></i> Add student </a>
+                              <a href="add-student.php?p=<?php echo urlencode(base64_encode($row['parent_ID'] * 2024)); ?>" class="btn btn-sm btn-primary "><i class=" fas fa-user-plus"></i> Add student </a>
 
                             </td>
 
@@ -494,7 +494,7 @@ include '../includes/db_conn.php'; // the  connection to the database
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2022 </strong>
+      <strong>Copyright &copy; 2025 </strong>
       All rights reserved.
 
     </footer>
