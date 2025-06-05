@@ -302,8 +302,8 @@ include '../includes/db_conn.php'; // the  connection to the database
                                 $phone_number1 = $row['phone_number1'];
                                 $phone_number2 = $row['phone_number2'];
                                 $phone_number1 = $row['phone_number1'];
-                                $fathers_img = $row['fathers_img'];
-                                $mothers_img = $row['mothers_img'];
+                                // $fathers_img = $row['fathers_img'];
+                                // $mothers_img = $row['mothers_img'];
                             } ?>
                             <div class="col-md-12">
                                 <div class="card card-primary card-outline">
@@ -319,14 +319,14 @@ include '../includes/db_conn.php'; // the  connection to the database
                                                         <div class="col-md-5">
 
 
-                                                            <div class="form-group">
+                                                            <!-- <div class="form-group">
                                                                 <label for="exampleInputPassword1">Photo</label>
 
 
                                                                 <div class="kv-avatar center-block" style="width:200px">
                                                                     <input id="avatar-2" name="father_image" type="file" class="file-loading">
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </div> <!-- /.col-md-6 -->
                                                         <div class="col-md-7">
                                                             <div class="row">
@@ -369,14 +369,14 @@ include '../includes/db_conn.php'; // the  connection to the database
 
 
 
-                                                            <div class="form-group">
+                                                            <!-- <div class="form-group">
                                                                 <label for="exampleInputPassword1">Photo</label>
 
 
                                                                 <div class="kv-avatar center-block" style="width:200px">
                                                                     <input id="avatar-1" name="mother_image" type="file" class="file-loading">
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </div> <!-- /.col-md-6 -->
                                                         <div class="col-md-7">
                                                             <div class="row">
