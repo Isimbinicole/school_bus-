@@ -124,7 +124,7 @@ if ($_GET['t'] == 're_load') {
       <table id="example2" class="table table-bordered table-sm ">
         <thead>
           <tr>
-            <th>Profile </th>
+            <!-- <th>Profile </th> -->
             <th>names </th>
             <th>NID</th>
             <th>Email</th>
@@ -148,7 +148,7 @@ if ($_GET['t'] == 're_load') {
             }
           ?>
             <tr>
-              <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td>
+              <!-- <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td> -->
               <td><?php echo $row['driver_names']; ?></td>
               <td><?php echo $row['driver_NID']; ?></td>
               <td><?php echo $row['email']; ?></td>
@@ -178,12 +178,6 @@ if ($_GET['t'] == 're_load') {
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
-
-
-
-
-
-
 
   <script>
     $(function() {

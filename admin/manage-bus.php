@@ -284,22 +284,22 @@ include '../includes/db_conn.php'; // the  connection to the database
                 $bus_ID = $row['bus_ID'];
                 $sql_d = "SELECT * FROM drivers WHERE bus_ID='$bus_ID'";
                 $exe_d = $conn->query($sql_d);
-                $driver_image = '';
-                while ($row_d = $exe_d->fetch_array()) {
-                  $driver_image = $row_d['driver_image'];
-                }
+                // $driver_image = '';
+                // while ($row_d = $exe_d->fetch_array()) {
+                //   $driver_image = $row_d['driver_image'];
+                // }
                 $seats = $row['seats'];
                 $plate_number = $row['plate_number'];
                 $model = $row['model'];
-                if ($driver_image == '') {
-                  $driver_image = "image.png";
-                }
+                // if ($driver_image == '') {
+                //   $driver_image = "image.png";
+                // }
             ?>
 
                 <div class="col-md-3">
 
                   <div class="small-box bg-dark ">
-                    <img src="../images/driver/<?php echo $driver_image; ?>" class="bg-white" style="height: 80px;width: 80px;border-radius: 50%;border:solid 1px gray;margin-top: -40px;position: relative;margin-left: 10px;">
+                    <!-- <img src="../images/driver/<?php echo $driver_image; ?>" class="bg-white" style="height: 80px;width: 80px;border-radius: 50%;border:solid 1px gray;margin-top: -40px;position: relative;margin-left: 10px;"> -->
                     <div class="header ">
                       <h5 style="margin-left: 20px;"> <?php echo $model; ?></h5>
                     </div>
