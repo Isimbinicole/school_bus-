@@ -137,8 +137,6 @@ include '../includes/db_conn.php'; // the  connection to the database
 								<i class="nav-icon fab  fa-sellsy"></i>
 								<p>
 									Report
-
-
 								</p>
 							</a>
 

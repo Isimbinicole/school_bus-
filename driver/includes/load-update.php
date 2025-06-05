@@ -105,7 +105,7 @@
 					<div class="col-lg-6">
 						<b>Parents</b>
 						<hr style="border-width: 2px ; margin-top: 5px;margin-bottom: 10px; " class="bg-light">
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="alert " style="font-size: 10px;font-weight:bold;">
 									Father
@@ -124,7 +124,7 @@
 									<?php echo $mothers_names; ?>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="col-lg-6 col-md-6" style="font-size: 13px; font-weight: bold;">
 						<div class="row">
@@ -244,21 +244,11 @@
 
 
 						?>
-
-
-
-
 						<td><?php echo $tel1 . "<br>" . $tel2; ?></td>
-
-
-
 					</tr>
 				<?php
 				}
-
-
-
-				?>
+			?>
 
 			</tbody>
 

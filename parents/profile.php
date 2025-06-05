@@ -43,6 +43,9 @@ include '../includes/db_conn.php'; // the  connection to the database
   <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+
+
+  
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -201,15 +204,15 @@ include '../includes/db_conn.php'; // the  connection to the database
               $email = $row['email'];
               $phone = $row['phone_number1'];
               $phone2 = $row['phone_number2'];
-              $father_img = $row['fathers_img'];
-              $mother_img = $row['mothers_img'];
+              // $father_img = $row['fathers_img'];
+              // $mother_img = $row['mothers_img'];
             }
-            if ($father_img == '') {
-              $father_img = "father.png";
-            }
-            if ($mother_img == '') {
-              $mother_img = "mother.png";
-            }
+            // if ($father_img == '') {
+            //   $father_img = "father.png";
+            // }
+            // if ($mother_img == '') {
+            //   $mother_img = "mother.png";
+            // }
             ?>
             <div class="col-md-10">
               <div class="alert alert-danger">
@@ -327,7 +330,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                       <div class="col-md-6   card-primary ">
                         <div class="row justify-content-center">
                           <div class="col-md-3">
-                            <img src="../images/parents/<?php echo $mother_img; ?>" class="img img-circle " style="height: 80px; width: 80px;">
+                            <!-- <img src="../images/parents/<?php echo $mother_img; ?>" class="img img-circle " style="height: 80px; width: 80px;"> -->
                           </div>
                           <div class="col-md-12">
                             <div style="float: right; font-size: 12px;">
@@ -342,7 +345,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                       <div class="col-md-6 ">
                         <div class="row justify-content-center">
                           <div class="col-md-3">
-                            <img src="../images/parents/<?php echo $father_img; ?>" class="img img-circle " style="height: 80px; width: 80px;">
+                            <!-- <img src="../images/parents/<?php echo $father_img; ?>" class="img img-circle " style="height: 80px; width: 80px;"> -->
                           </div>
                           <div class="col-md-12">
                             <div style="float: right; font-size: 12px;">
@@ -539,26 +542,26 @@ include '../includes/db_conn.php'; // the  connection to the database
 
   <script type="text/javascript">
     $('.update-loc').click(() => {
-      // navigator.geolocation.getCurrentPosition((position) => {
-      //   let lat = position.coords.latitude;
-      //   let long = position.coords.longitude;
-      //   //insert the driver location in the maps 
-      //   fetch(`./includes/insert-coords.php?lat=${lat}&long=${long}`)
-      //     .then((resp) => {
-      //       return resp.json();
-      //     }).then((backData) => {
-      //       const gotData = backData;
-      //       if (gotData.success == true) {
-      //         toastr.success(`New cordinated saved successfuly`);
-      //       } else {
-      //         toastr.error(`Failed to load and register new cordinates `);
-      //       }
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+        //insert the driver location in the maps 
+        fetch(`./includes/insert-coords.php?lat=${lat}&long=${long}`)
+          .then((resp) => {
+            return resp.json();
+          }).then((backData) => {
+            const gotData = backData;
+            if (gotData.success == true) {
+              toastr.success(`New cordinated saved successfuly`);
+            } else {
+              toastr.error(`Failed to load and register new cordinates `);
+            }
 
 
 
-      //     })
+          })
 
-      // });
+      });
 
       getLocation();
     })
@@ -573,10 +576,8 @@ include '../includes/db_conn.php'; // the  connection to the database
 
       }
     }
-
+`
     function showPosition(position) {
-
-
       let lat = position.coords.latitude;
       let long = position.coords.longitude;
       //insert the driver location in the maps 

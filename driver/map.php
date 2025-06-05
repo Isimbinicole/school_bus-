@@ -71,10 +71,6 @@ $centerlong = $longitude;
 
 </html>
 
-
-
-
-
 </div>
 
 <script>
@@ -121,21 +117,11 @@ $centerlong = $longitude;
                 });
             }
             // this code will learn to continously fetch the location data of the soldier 
-
-
-
-        }
+       }
         console.log(map);
 
 
     }
-
-
-
-
-
-
-
     // }, 2000);
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABe4YclPdBycrGRaPI6RPxvDLugppGm_k&callback=initMap" async></script>

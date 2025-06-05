@@ -127,30 +127,14 @@ $centerlong = $longitude;
                             lat: latitude,
                             lng: longitude
                         });
-
-
-
-
                     });
             }
-
-
-
             fetchLastData();
             setInterval(() => {
                 fetchLastData();
-
             }, 3000);
 
-
-
-
-
-
         }
-
-
-
     }
     // }, 2000);
 </script>

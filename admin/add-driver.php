@@ -129,30 +129,6 @@ include '../includes/db_conn.php'; // the  connection to the database
                 </p>
               </a>
             </li>
-            <!-- <li class="nav-item ">
-              <a href="#" class="nav-link ">
-                <i class="nav-icon fa fa-graduation-cap"></i>
-                <p>
-                  Students
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item ">
-                  <a href="add-student.php" class="nav-link ">
-                    <i class="fa fa-user-plus nav-icon"></i>
-                    <p>Add student</p>
-                  </a>
-                </li>
-                <li class="nav-item menu-open ">
-                  <a href="manage-students.php" class="nav-link">
-                    <i class="fa fa-edit nav-icon"></i>
-                    <p>Manage students</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li> -->
             <li class="nav-item ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fa fa-users"></i>
@@ -233,7 +209,6 @@ include '../includes/db_conn.php'; // the  connection to the database
                 <i class="nav-icon fa fa-user"></i>
                 <p>
                   Profile
-
                 </p>
               </a>
 
@@ -286,14 +261,14 @@ include '../includes/db_conn.php'; // the  connection to the database
                             <div class="col-md-5">
 
 
-                              <div class="form-group">
+                              <!-- <div class="form-group">
                                 <label for="exampleInputPassword1">Photo</label>
 
 
                                 <div class="kv-avatar center-block" style="width:200px">
                                   <input id="avatar-2" name="driver_image" type="file" class="file-loading">
                                 </div>
-                              </div>
+                              </div> -->
                             </div> <!-- /.col-md-6 -->
                             <div class="col-md-7">
                               <div class="row">

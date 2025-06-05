@@ -283,7 +283,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                   <table id="example1" class="table table-bordered table-sm ">
                     <thead>
                       <tr>
-                        <th>Profile </th>
+                        <!-- <th>Profile </th> -->
                         <th>names </th>
                         <th>NID</th>
                         <th>Email</th>
@@ -308,7 +308,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                         }
                       ?>
                         <tr>
-                          <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td>
+                          <!-- <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td> -->
                           <td><?php echo $row['driver_names']; ?></td>
                           <td><?php echo $row['driver_NID']; ?></td>
                           <td><?php echo $row['email']; ?></td>
@@ -351,7 +351,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                   <table id="example2" class="table table-bordered table-sm ">
                     <thead>
                       <tr>
-                        <th>Profile </th>
+                        <!-- <th>Profile </th> -->
                         <th>names </th>
                         <th>NID</th>
                         <th>Email</th>
@@ -375,7 +375,7 @@ include '../includes/db_conn.php'; // the  connection to the database
                         }
                       ?>
                         <tr>
-                          <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td>
+                          <!-- <td><img src="../images/driver/<?php echo $row['driver_image'] ?>" class="img-circle img " height="50" width="50"></td> -->
                           <td><?php echo $row['driver_names']; ?></td>
                           <td><?php echo $row['driver_NID']; ?></td>
                           <td><?php echo $row['email']; ?></td>
@@ -432,7 +432,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2022 .</strong>
+      <strong>Copyright &copy; 2025 .</strong>
       All rights reserved.
 
     </footer>
