@@ -95,7 +95,7 @@ include '../includes/db_conn.php'; // the  connection to the database
 			<a href="index.html" class="brand-link">
 				<i class="fa fa-bus  img-circle elevation-3" style="opacity: .8;"></i>
 				<!--      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-				<span class="brand-text font-weight-light">SBM</span>
+				<span class="brand-text font-weight-light">SBT</span>
 			</a>
 
 			<!-- Sidebar -->

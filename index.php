@@ -114,21 +114,21 @@
 			<div class="col-md-7 col-lg-7 bck-g" style="overflow: hidden;height: 100vh;">
 				<div class="bg-light info-left" style="height: 1800px;width: 1800px;border-radius: 50%;margin-left: -120%;margin-top: 0px;position: absolute;"></div>
 				<div class=" top-div" style="height: 400px; z-index: 1;position: relative;margin-top: 40px;margin-left: 40px;">
-					<h2 class="h4  " style="font-weight: 600;" id="testimonial div">Welcome to school bus<br> monitoring system</h2>
+					<h2 class="h4  " style="font-weight: 600;" id="testimonial div">Welcome to wearable embedded <br> Tracking system</h2>
 					<hr class="info-right" style="border-width: 2px; border-color: #007bff;width: 200px;margin-left: 0px;">
 					<img src="images/development/undraw_education_f8ru.svg" class="showcase-right" style="width: 50%;">
 
-					<p class=" info-right" style="margin-top: 30px;font-weight: 600;"><i class="fa  fa-map-marker-alt" style="margin-top: 10px;font-size: 2rem;"></i>
+					<!-- <p class=" info-right" style="margin-top: 30px;font-weight: 600;"><i class="fa  fa-map-marker-alt" style="margin-top: 10px;font-size: 2rem;"></i>
 						Monitor the safety of your children by continously <br>
 						tracking the school bus.
 						<br>
 
-					</p>
-					<p class="info-left" style="font-weight: 600;"><i class="fa  fa-graduation-cap" style="margin-top: 10px;font-size: 2rem;"></i>
+					</p> -->
+					<!-- <p class="info-left" style="font-weight: 600;"><i class="fa  fa-graduation-cap" style="margin-top: 10px;font-size: 2rem;"></i>
 						Monitor the safety of students and ensure their <br> safe arrival at their respective places.
 						<br>
 
-					</p>
+					</p> -->
 				</div>
 			</div>
 			<div class="col-lg-5 col-md-5">

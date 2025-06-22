@@ -436,9 +436,9 @@ include '../includes/db_conn.php'; // the  connection to the database
 
 
             <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
+            <!-- <section class="col-lg-7 connectedSortable"> -->
               <!-- Custom tabs (Charts with tabs)-->
-              <div class="card card-outline card-info">
+              <!-- <div class="card card-outline card-info">
                 <div class="card-header">
                   <h3 class="card-title"><strong class="text-primary"><?php echo date("M") ?></strong> bus board statistics</h3>
 
@@ -453,14 +453,14 @@ include '../includes/db_conn.php'; // the  connection to the database
                   <div class="chart">
                     <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                   </div>
-                </div>
+                </div> -->
                 <!-- /.card-body -->
-              </div>
+              <!-- </div> -->
               <!-- /.card -->
-            </section>
+            <!-- </section> -->
             <!-- /.Left col -->
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
+            <!-- <section class="col-lg-5 connectedSortable">
 
               <div class="card card-outline card-success">
                 <div class="card-header">
@@ -472,20 +472,20 @@ include '../includes/db_conn.php'; // the  connection to the database
                     </button>
 
                   </div>
-                </div>
-                <div class="card-body">
+                </div> -->
+                <!-- <div class="card-body">
                   <div class="chart">
                     <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                   </div>
-                </div>
+                </div> -->
                 <!-- /.card-body -->
-              </div>
+              <!-- </div> -->
               <!-- /.card -->
 
 
 
 
-            </section>
+            <!-- </section> -->
             <!-- right col -->
           </div>
           <!-- /.row (main row) -->

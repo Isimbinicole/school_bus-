@@ -68,29 +68,74 @@ if ($father_name == '') {
         $valid['messages'] = "Parent successfully registered";
 
         // Send SMS with account details
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'http://api.mista.io/sms',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_POSTFIELDS => array(
+        //         'recipient' => "+25" . $phone,
+        //         'sender_id' => 'SMS 250',
+        //         'message' => "Hello! Your account has been successfully created. Email: $email, Password: $gensn",
+        //         'type' => 'plain'
+        //     ),
+        //     CURLOPT_HTTPHEADER => array(
+        //         'Content-Type: application/json',
+        //         'Authorization: 744|Mvd9lD8ynSVcvPicj3qu1dEJ2d9pup9tm76hMwVA'
+        //     ),
+        // ));
+        // $response = curl_exec($curl);
+        // curl_close($curl);
+        // echo ($response);
+
+
+        
         $curl = curl_init();
+
+        $data = [
+            "recipient" => "+25" . $phone, // Remove space between numbers
+            "sender_id" => "E-Notifier",
+            "type" => "plain",
+            "message" => "Hello! Your account has been successfully created. Email: $email, Password: $gensn"
+        ];
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.mista.io/sms',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
+            CURLOPT_MAXREDIRS => 50,
+            CURLOPT_TIMEOUT => 50,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'to' => "+25" . $phone,
-                'from' => 'SMS 250',
-                'unicode' => '0',
-                'sms' => "Hello! Your account has been successfully created. Email: $email, Password: $gensn",
-                'action' => 'send-sms'
-            ),
+            CURLOPT_POSTFIELDS => json_encode($data), // Use json_encode for safety
             CURLOPT_HTTPHEADER => array(
-                'x-api-key: a02c7aaa-48a7-974d-901d-d6476d221271-152d9ab3'
+                'Content-Type: application/json',
+                'Authorization: Bearer 744|Mvd9lD8ynSVcvPicj3qu1dEJ2d9pup9tm76hMwVA'
             ),
         ));
+
         $response = curl_exec($curl);
+
+        if (curl_errno($curl)) {
+            $valid['messages'] .= " (SMS not sent: " . curl_error($curl) . ")";
+        } else {
+            $sms_response = json_decode($response, true);
+
+            if (!isset($sms_response['status']) || $sms_response['status'] !== 'success') {
+                $valid['messages'] .= " (SMS failed to send: " . ($sms_response['message'] ?? 'Unknown error') . ")";
+            }
+        }
+
+        
+
         curl_close($curl);
+
     } else {
         $valid['success'] = false;
         $valid['messages'] = "Error while recording the data";
@@ -98,3 +143,6 @@ if ($father_name == '') {
 }
 
 echo json_encode($valid);
+
+
+?>
