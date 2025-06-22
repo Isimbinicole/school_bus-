@@ -1,20 +1,56 @@
 <?php
-// student.php
-include '../includes/db_conn.php';
+include '../database/db_config.php';
 
-$card_number = $_POST['card_number'];
+$data = json_decode(file_get_contents("php://input"), true);
+$card = isset($data['card']) ? strtoupper(trim($conn->real_escape_string($data['card']))) : '';
 
-$query = "SELECT student_names, DOB, sex FROM students WHERE card_number = '$card_number'";
-$result = mysqli_query($conn, $query);
-
-if ($row = mysqli_fetch_assoc($result)) {
+if (!$card) {
     echo json_encode([
-        'status' => 'success',
-        'student_names' => $row['student_names'],
-        'DOB' => $row['DOB'],
-        'sex' => $row['sex']
+        "status" => 1,
+        "message" => "Card UID not provided"
+    ]);
+    exit;
+}
+
+// Log incoming UID
+file_put_contents(__DIR__ . "/debug.log", "Received Card: $card\n", FILE_APPEND);
+
+// Query student info
+$sql = "SELECT * FROM `students` WHERE `card_number` = '$card'";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    $student = $result->fetch_assoc();
+
+    // Get location if available
+    $latitude = "";
+    $longitude = "";
+    $sql_bus = "SELECT latitude, longitude FROM `bus` LIMIT 1";
+    $bus_result = $conn->query($sql_bus);
+    if ($bus_result && $bus_result->num_rows > 0) {
+        $bus = $bus_result->fetch_assoc();
+        $latitude = $bus['latitude'];
+        $longitude = $bus['longitude'];
+    }
+
+    // Build image path (adjust if images folder is different)
+    $image_path = "http://nicole1-001-site1.jtempurl.com/images/" . $student['profile_image'];
+
+    // Respond with full info
+    echo json_encode([
+        "status" => 0,
+        "student_names" => $student['student_names'],
+        "DOB" => $student['DOB'],
+        "sex" => $student['sex'],
+        "profile_image" => $image_path,
+        "latitude" => $latitude,
+        "longitude" => $longitude
     ]);
 } else {
-    echo json_encode(['status' => 'not_found']);
+    echo json_encode([
+        "status" => 1,
+        "message" => "Student Not Found",
+        "card_received" => $card
+    ]);
 }
 ?>
