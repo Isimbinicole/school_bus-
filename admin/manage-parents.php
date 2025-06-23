@@ -315,6 +315,8 @@ include '../includes/db_conn.php'; // the  connection to the database
                               <b class="btn btn-sm text-danger d-p" id="<?php echo $row['parent_ID']; ?>">
                                 <i class="fas fa-trash-alt"></i>
                               </b>
+                              <a href="view-students.php?parent_ID=<?= $row['parent_ID'] ?> " class="btn btn-sm btn-info">View Students</a>
+                              <!-- <a href="view-students.php?p=<?php echo urlencode(base64_encode($row['parent_ID'] )); ?>" class="btn btn-sm btn-info">View Students</a> -->
                               <a href="add-student.php?p=<?php echo urlencode(base64_encode($row['parent_ID'] * 2025)); ?>" class="btn btn-sm btn-primary "><i class=" fas fa-user-plus"></i> Add student </a>
                             </td>
 
@@ -544,6 +546,13 @@ include '../includes/db_conn.php'; // the  connection to the database
 
     });
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function loadStudents(parentID) {
+  $('#main-content').load('view-students.php?parent_ID=' + parentID);
+}
+</script>
+
 </body>
 
 </html>
