@@ -10,7 +10,7 @@ GyverOLED<SSH1106_128x64> oled;
 #define STASSID "HUAWEI-B310-68AD"
 #define STAPSK  "YALJG3Y7FH6"
 
-// Server URL (update if needed)
+// Server URL
 #define SERVER_URL "http://nicole1-001-site1.jtempurl.com/api/student.php"
 
 // RFID pins
@@ -104,13 +104,11 @@ void sendCardToServer(String uid) {
 
     if (payload.indexOf("student_names") != -1) {
       requestStatus = "success";
-      String name = getValue(payload, "student_names");
-      String dob = getValue(payload, "DOB");
-      String sex = getValue(payload, "sex");
+
+      // Save all values to global payload
+      studentInfo = payload;
       latitude = getValue(payload, "latitude");
       longitude = getValue(payload, "longitude");
-
-      studentInfo = "Name: " + name + "\nDOB: " + dob + "\nSex: " + sex;
     } else {
       requestStatus = "not_found";
     }
@@ -124,33 +122,51 @@ void sendCardToServer(String uid) {
 
 void showResponse() {
   oled.clear();
+  oled.setScale(0);  // Smaller text to fit more lines
+
+  oled.setCursor(0, 0);
+  oled.print("UID: " + cardUID);
+
   if (requestStatus == "success") {
     digitalWrite(LED_SUCCESS, HIGH);
-    oled.setScale(1);
-    oled.setCursor(0, 0);
-    oled.print("STUDENT FOUND!");
-    oled.setCursor(0, 2);
-    oled.print(studentInfo);
-    oled.setCursor(0, 6);
-    oled.print("Lat: " + latitude);
-    oled.setCursor(0, 7);
-    oled.print("Long: " + longitude);
-    oled.setCursor(0, 8);
-    oled.print("Status: OK");
     digitalWrite(LED_FAIL, LOW);
+
+    oled.setCursor(0, 1);
+    oled.print("Name: " + getValue(studentInfo, "student_names"));
+
+    oled.setCursor(0, 2);
+    oled.print("ID: " + getValue(studentInfo, "student_ID"));
+
+    oled.setCursor(0, 3);
+    oled.print("DOB: " + getValue(studentInfo, "DOB"));
+
+    oled.setCursor(0, 4);
+    oled.print("Sex: " + getValue(studentInfo, "sex"));
+
+    oled.setCursor(0, 5);
+    oled.print("Card: " + getValue(studentInfo, "card_number"));
+
+    oled.setCursor(0, 6);
+    oled.print("Lat: " + latitude.substring(0, 10));
+
+    oled.setCursor(0, 7);
+    oled.print("Lng: " + longitude.substring(0, 10));
+
   } else if (requestStatus == "not_found") {
     digitalWrite(LED_FAIL, HIGH);
-    oled.setCursor(0, 1);
-    oled.print("Student Not Found");
     digitalWrite(LED_SUCCESS, LOW);
+    oled.setCursor(0, 2);
+    oled.print("Student Not Found");
+
   } else {
     digitalWrite(LED_FAIL, HIGH);
-    oled.setCursor(0, 1);
-    oled.print("Internet Error");
     digitalWrite(LED_SUCCESS, LOW);
+    oled.setCursor(0, 2);
+    oled.print("Internet Error");
   }
+
   oled.update();
-  delay(1500);
+  delay(3000);
   digitalWrite(LED_SUCCESS, LOW);
   digitalWrite(LED_FAIL, LOW);
 }

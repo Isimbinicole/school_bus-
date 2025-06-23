@@ -33,7 +33,20 @@
 01:41:26.357 -> SDK:2.2.2-dev(38a443e)/Core:3.1.2=30102000/lwIP:STABLE-2_1_3_RELEASE/glue:1.2-65-g06164fb/BearSSL:b024386
 01:41:26.434 -> fpm close 3 
 01:41:26.434 -> mode : sta(8c:ce:4e:c8:25:a2)
-01:41:26.478 -> add if0
-01:41:26.675 -> ............
-
-
+02:20:46.235 -> connected with HUAWEI-B310-68AD, channel 2
+02:20:46.281 -> dhcp client start...
+02:20:46.327 -> ip:192.168.10.116,mask:255.255.255.0,gw:192.168.10.1
+02:20:46.372 -> .pm open,type:2 0
+02:21:28.483 -> Card UID: A64C14
+02:21:28.668 -> Sending to server: {"card":"A64C14"}
+02:21:29.510 -> HTTP 200 Response: {"error":"Student not found"}
+02:21:38.484 -> Card UID: 65EE8F4
+02:21:38.672 -> Sending to server: {"card":"65EE8F4"}
+02:21:39.373 -> HTTP 200 Response: {"student_names":"Jane Doe","DOB":"2012-09-05","sex":"Female","card_number":"65EE8F4","profile_image":"jane.jpg","latitude":"-1.5457299","longitude":"29.6267234"}
+02:21:48.138 -> Card UID: 7EDD6A5F
+02:21:48.326 -> Sending to server: {"card":"7EDD6A5F"}
+02:21:48.980 -> HTTP 200 Response: {"student_names":"uwera","DOB":"1750197600","sex":"Female","card_number":"7EDD6A5F","profile_image":"20685607156855676b4ae8a.jpg","latitude":null,"longitude":null}
+02:22:00.008 -> Card UID: 8386E92C
+02:22:00.148 -> Sending to server: {"card":"8386E92C"}
+02:22:00.871 -> HTTP 200 Response: {"student_names":"patrick","DOB":"961624800","sex":"Male","card_number":"8386E92C","profile_image":"108471934968585b9e7809c.png","latitude":"-1.5457299","longitude":"29.6267234"}
+02:27:38.175 -> 
